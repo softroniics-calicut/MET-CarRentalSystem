@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="utf-8">
+    <title>ROYAL CARS - Car Rental HTML Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+    <!-- Favicon -->
+    <link href="{% static 'img/favicon.ico' %}" rel="icon">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="{% static 'https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Rubik&display=swap' %}" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="{% static 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css' %}" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+    <link href="{% static 'lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css' %}" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+<!--    register and login style-->
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+    <!-- Topbar Start -->
+    <div class="container-fluid bg-dark py-3 px-lg-5 d-none d-lg-block">
+        <div class="row">
+            <div class="col-md-6 text-center text-lg-left mb-2 mb-lg-0">
+                <div class="d-inline-flex align-items-center">
+                    <a class="text-body pr-3" href=""><i class="fa fa-phone-alt mr-2"></i>+012 345 6789</a>
+                    <span class="text-body">|</span>
+                    <a class="text-body px-3" href=""><i class="fa fa-envelope mr-2"></i>info@example.com</a>
+                </div>
+            </div>
+            <div class="col-md-6 text-center text-lg-right">
+                <div class="d-inline-flex align-items-center">
+                    <a class="text-body px-3" href="">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a class="text-body px-3" href="">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a class="text-body px-3" href="">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a class="text-body px-3" href="">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a class="text-body pl-3" href="">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->
+
+
+    <!-- Navbar Start -->
+    <div class="container-fluid position-relative nav-bar p-0">
+        <div class="position-relative px-lg-5" style="z-index: 9;">
+            <nav class="navbar navbar-expand-lg bg-secondary navbar-dark py-3 py-lg-0 pl-3 pl-lg-5">
+                <a href="" class="navbar-brand">
+                    <h1 class="text-uppercase text-primary mb-1">Royal Cars</h1>
+                </a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
+                    <div class="navbar-nav ml-auto py-0">
+
+                        <a href="{% url 'add_car' %}" class="nav-item nav-link">Addcar</a>
+                        <a href="{% url 'view_car' %}" class="nav-item nav-link">CarList</a>
+                        <a href="{% url 'view_requests' %}" class="nav-item nav-link">Requests</a>
+                        <a href="{% url 'history' %}" class="nav-item nav-link">History</a>
+                        <a href="{% url 'userlogout' %}" class="nav-item nav-link">Logout</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+
+{% block content %}
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12" style="margin-top: 20px; overflow-x:scroll">
+      <table class="table table-striped table-hover table-light ">
+        <thead class="bg-light">
+          <tr>
+            <th scope="col">name</th>
+            <th scope="col">carmodel</th>
+            <th scope="col">price</th>
+            <th scope="col">image</th>
+            <th scope="col">status</th>
+
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            {% for i in data %}
+            <th scope="row">{{ i.name}}</th>
+            <td>{{ i.car_model }}</td>
+            <td>{{ i.price }}</td>
+            <td style="width: fit-content;"><img src="{{ i.image.url }}" style="width: 100px; margin:auto;">
+            </td>
+            <td>{% if i.status == "Available" %}
+              <span style="color: green;">{{ i.status }}</span>
+              {% else %}
+              <span style="color: red;">{{ i.status }}</span>
+              {% endif %}
+            </td>
+            <td class="d-flex align-items-center ">
+              <a href="{% url 'edit_car' id=i.id %}" title="edit">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="black" class="bi bi-pen-fill"
+                  viewBox="0 0 16 16">
+                  <path
+                    d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001" />
+                </svg></a>
+              <a href="{% url 'delete' id=i.id %}" style="padding-left: 20px; padding-right: 20px;" title="Delete">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="red" class="bi bi-trash3-fill"
+                  viewBox="0 0 16 16">
+                  <path
+                    d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5" />
+                </svg></a>
+              {% if i.status == "Unavailable" %}
+              <form action="{% url 'car_status' id=i.id %}" method="post" >
+                {% csrf_token %}
+                <input type="hidden" name="status" value="Available">
+              <button class="btn btn-success rounded-5">Avail</button>
+              </form>
+              {% else %}
+              <form action="{% url 'car_status' id=i.id %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="status" value="Unavailable">
+              <button class="btn btn-danger rounded-5">Unavail</button>
+              </form>
+              {% endif %}
+
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+
+
+      {% endblock %}
+      
+  
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <script src="{% static 'https://code.jquery.com/jquery-3.4.1.min.js' %}"></script>
+    <script src="{% static 'https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/easing/easing.min.js' %}"></script>
+    <script src="{% static 'js/waypoints/waypoints.min.js' %}"></script>
+    <script src="{% static 'js/owlcarousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/tempusdominus/js/moment.min.js' %}"></script>
+    <script src="{% static 'js/tempusdominus/js/moment-timezone.min.js' %}"></script>
+    <script src="{% static 'js/tempusdominus/js/tempusdominus-bootstrap-4.min.js' %}"></script>
+
+    <!-- Template Javascript -->
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>

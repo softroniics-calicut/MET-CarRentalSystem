@@ -1,0 +1,73 @@
+
+{% extends 'user/userindex.html' %}
+{% block content %}
+{% load static %}
+
+    <style>
+    .profile-container {
+    max-width: 400px;
+    margin: 30px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-attribute {
+    margin-bottom: 15px;
+}
+
+.edit-button {
+    margin-top: 20px;
+    display: block;
+    text-align: center;
+}
+
+    </style>
+
+<div class="profile-container">
+    <h1>User Profile</h1>
+
+    <div class="profile-attribute">
+        <strong>First Name:</strong>
+        <span>{{ data.first_name }}</span>
+    </div>
+
+    <div class="profile-attribute">
+        <strong>Last Name:</strong>
+        <span>{{ data.last_name }}</span>
+    </div>
+
+    <div class="profile-attribute">
+        <strong>Username:</strong>
+        <span>{{ data.username }}</span>
+    </div>
+
+    <div class="profile-attribute">
+        <strong>Email:</strong>
+        <span>{{ data.email }}</span>
+    </div>
+
+    <div class="profile-attribute">
+        <strong>Phone Number:</strong>
+        <span>{{ data.phone }}</span>
+    </div>
+
+    <div class="profile-attribute">
+        <strong>Address:</strong>
+        <span>{{ data.address }}</span>
+    </div>
+
+    <div class="profile-attribute">
+        <strong>Location:</strong>
+        <span>{{ data.location }}</span>
+    </div>
+
+    <!-- You can also add a link to edit the profile -->
+    <a href="{% url 'edit_profile' id=user.id %}" class="edit-button">
+        <button type="button" class="btn btn-outline-success">Edit</button>
+    </a>
+</div>
+
+
+{% endblock %}

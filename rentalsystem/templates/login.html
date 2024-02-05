@@ -1,0 +1,97 @@
+{% extends 'index.html' %}
+{% block content %}
+{% load static %}
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.right {
+  background-color: rgb(255, 255, 255);
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+    border-radius: 8px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.copy {
+  margin-top: 30px;
+    text-align: center;
+}
+
+.input-container {
+    margin-bottom: 15px;
+}
+
+label {
+    margin-bottom: 5px;
+    display: block;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color:#0a53c1;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0a53c1;
+}
+
+/* You may want to customize the eye-slash icon style */
+.fa-eye-slash {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+</style>
+<section class="copy">
+  <h2>Login</h2>
+</section>
+<div class="right">
+  <form method="POST" action="{% url 'user_login' %}" class="login-form">
+      {% csrf_token %}
+
+      <div class="input-container username">
+          <label for="username">Username</label>
+          <input id="username" name="username" placeholder="Username" type="text" required>
+          <i class="far fa-eye-slash"></i>
+      </div>
+
+      <div class="input-container password">
+          <label for="password">Password</label>
+          <input id="password" name="password" placeholder="Password" type="password" required>
+          <i class="far fa-eye-slash"></i>
+      </div>
+      <div style="color: red;">
+        {% if message %}
+        {{ message }}
+        {% endif %}
+      </div>
+      <button class="signin-btn" type="submit">Log In</button>
+      {{ success }}
+  </form>
+</div>
+{% endblock %}
+
+

@@ -1,0 +1,82 @@
+
+
+{% extends 'user/userindex.html' %}
+{% block content %}
+{% load static %}
+
+    <style>
+        /* body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        } */
+
+        form {
+            margin-top: 5%;
+            margin-left: 38%;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+
+    
+
+    <form method="post" action="{% url 'car_request' id=car.id %}">
+        {% csrf_token %}
+        <label for="no_of_day">Number of Days:</label>
+        <input type="number" name="no_of_day" required>
+
+        <label for="day">Day:</label>
+        <input type="date" name="day" required>
+
+
+        <a href="{% url 'view_requests' %}"><button type="submit">Submit Request</button></a>
+    </form>
+{% endblock %}
+

@@ -1,0 +1,111 @@
+{% extends 'user/userindex.html' %}
+{% block content %}
+{% load static %}
+
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        h2 {
+            color: #333;
+            text-align: center;
+        }
+
+
+
+  
+
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007BFF;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        
+    </style>
+
+
+
+
+
+    <!-- Rent A Car End -->
+    
+        <div class="container  pt-3 pb-3">         
+            <div class="header">
+                <!-- <div style="display: flex; justify-content: space-between; margin-top: 15px; margin-left: 65%;"></div> -->
+                <form action="{% url 'car_search' %}" method="get" class="d-flex justify-content-end ">
+                    {% csrf_token %}
+                        <div class="input-group" style="margin-top: 15px;  width: 25%; ">
+                          <input type="search" name="car_name" class="form-control rounded" placeholder="Search Car" aria-label="Search" aria-describedby="search-addon" 
+                          required />
+                          <button type="submit" class="btn btn-outline-primary" data-mdb-ripple-init>search</button>
+                      </div>
+                </form>
+            </div>
+            </div>
+           
+            <div class="row">
+                {% for i in data %}
+                <div class="col-lg-3 d-flex  mb-2 flex-wrap " style="flex: 24%;">                  
+                    <div class="rent-item mb-3 " >
+                        <!-- Your existing content --> 
+                        <img class="img-fluid mb-4" src="{{ i.image.url }}" style="width: 100%;">
+                        <h4 class="text-uppercase mb-4">{{ i.name }}</h4>
+                        <div class="d-flex justify-content-center mb-4">
+                            <div class="px-2">
+                                <i class="fa fa-car text-primary mr-1"></i>
+                                <span>{{ i.car_model }}</span>
+                            </div>
+                            <!-- <div class="px-2 border-left border-right">
+                                <i class="fa fa-cogs text-primary mr-1"></i>
+                                <span>{{ i.details }}</span>
+                            </div> -->
+                            <div class="px-2">
+                                <i class="fa fa-road text-primary mr-1"></i>
+                                <span></span>
+                            </div>
+                        </div>
+                        <a class="btn btn-primary px-3" href="{% url 'car_details' id=i.id %}">&#8377;{{ i.price }}/Day</a>
+                    </div>
+                </div>               
+                {% endfor %}
+            </div>
+        </div>
+  
+        
+    
+
+    
+
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'company/carview.html' %}
+{% block content %}
+{% load static %}
+<form method="post" action="{% url 'update_company' %}">
+    {% csrf_token %}
+        <label>companyname</label>
+        <input type="text" name="company_name" placeholder="name"><br>
+        <br>
+        <label>company_address</label>
+        <input type="text" name="company_address" placeholder="age"><br>
+        <br>
+        <label>location</label>
+        <input type="text" name="location" placeholder="roll_num"><br>
+        <br>
+        <input type="submit">
+</form>
+{% endblock %}
