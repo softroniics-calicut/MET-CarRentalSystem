@@ -196,15 +196,15 @@ img{
                     <span class = "product-name">{{ car.name }}</span>
                     <span class = "product-name">{{ car.car_model }}</span>
                     <span class = "product-price">&#8377;{{ car.price }}/Day</span>
-                    <div class = "product-rating">
+                    <!-- <div class = "product-rating">
                         <span><i class = "fas fa-star"></i></span>
                         <span><i class = "fas fa-star"></i></span>
                         <span><i class = "fas fa-star"></i></span>
                         <span><i class = "fas fa-star"></i></span>
                         <span><i class = "fas fa-star-half-alt"></i></span>
                         <span>(350 ratings)</span>
-                    </div>
-                    <span class = "product-name">{{ car.company_id.company_name }}</span>
+                    </div> -->
+                    <span class = "product-name">{{ car.company_id.company_name }} - {{ car.company_id.location }}</span>
                     <p class = "product-description">{{ car.details }}</p>
                     <div class = "btn-groups">
                         <a href="{% url 'car_request' id=car.id %}"><button type = "button" class = "buy-now-btn"><i class = "fas fa-wallet"></i>buy now</button></a>

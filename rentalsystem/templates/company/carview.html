@@ -159,14 +159,30 @@
           {% endfor %}
         </tbody>
       </table>
-
+      <div class="pagination mt-3 d-flex justify-content-end pe-5 mb-4  fw-bold text-black text-end ">
+        <span class="step-links  ">
+          {% if data.has_previous %}
+          <a class="btn btn-dark" href="?page=1">&laquo; first</a>
+          <a class="btn btn-dark" href="?page={{ data.previous_page_number }}">previous</a>
+          {% endif %}
+          {% if data.has_next %}
+  
+          <!-- <a href="?page={{ data.paginator.num_pages }}" class="text-decoration-none text-white btn btn-dark ">last &raquo;</a> -->
+          {% endif %}
+          <span class="current">
+            Page {{ data.number }} of {{ data.paginator.num_pages }}.
+          </span>
+  
+          {% if data.has_next %}
+  
+          <a href="?page={{ data.next_page_number }}"
+            class="text-decoration-none text-white  btn btn-dark ">next</a>
+          {% endif %}
+        </span>
+      </div>
 
 
       {% endblock %}
-      
-  
-
-
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
 

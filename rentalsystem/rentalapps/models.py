@@ -33,7 +33,6 @@ class Booking(models.Model):
     user = models.ForeignKey(customusers, on_delete=models.CASCADE)
     car = models.ForeignKey(Car, on_delete=models.CASCADE)
     starting_day = models.DateField()
-    # ending_day = models.DateField()
     no_of_days = models.IntegerField()
     Total_cost = models.IntegerField(null=True)
     booking_date = models.DateField(default=timezone.now)

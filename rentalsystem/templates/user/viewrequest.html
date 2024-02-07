@@ -196,4 +196,28 @@
 
     </tbody>
 </table>
+<!-- Pagination links -->
+<div class="pagination mt-3 d-flex justify-content-end pe-5 mb-4  fw-bold text-black text-end ">
+  <span class="step-links  ">
+    {% if all_bookings.has_previous %}
+    <a class="btn btn-dark" href="?page=1">&laquo; first</a>
+    <a class="btn btn-dark" href="?page={{ all_bookings.previous_page_number }}">previous</a>
+    {% endif %}
+    {% if all_bookings.has_next %}
+
+    <!-- <a href="?page={{ all_bookings.paginator.num_pages }}" class="text-decoration-none text-white btn btn-dark ">last &raquo;</a> -->
+    {% endif %}
+    <span class="current">
+      Page {{ all_bookings.number }} of {{ all_bookings.paginator.num_pages }}.
+    </span>
+
+    {% if all_bookings.has_next %}
+
+    <a href="?page={{ all_bookings.next_page_number }}"
+      class="text-decoration-none text-white  btn btn-dark ">next</a>
+    {% endif %}
+  </span>
+</div>
+
+
 {% endblock %}

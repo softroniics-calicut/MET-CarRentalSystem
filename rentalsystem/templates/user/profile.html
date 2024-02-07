@@ -62,6 +62,10 @@
         <strong>Location:</strong>
         <span>{{ data.location }}</span>
     </div>
+    <div class="profile-attribute">
+        <strong>Driving Licence:</strong>
+        <span><a href="{{ data.driving_licence.url }}" target="_blank">Click Here</a></span>
+    </div>
 
     <!-- You can also add a link to edit the profile -->
     <a href="{% url 'edit_profile' id=user.id %}" class="edit-button">
